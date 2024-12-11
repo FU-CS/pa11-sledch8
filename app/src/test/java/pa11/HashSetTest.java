@@ -11,5 +11,53 @@ class HashSetTest {
     @Test void EmptySet() {
         HashSet set = new HashSet();
         assertEquals(set.size(), 0);
+        assertEquals(true, set.isEmpty());
     }
+
+    @Test void SetSizeOne(){
+        HashSet set = new HashSet();
+        set.add("abc");
+        assertEquals(set.size(), 1);
+        assertEquals(false, set.isEmpty());
+        assertEquals(true,set.contains("abc"));
+
+        
+
+    }
+
+    @Test void SetPropertiesTest(){
+        HashSet set = new HashSet();
+        HashSet otherset = new HashSet();
+        set.add("a");
+        set.add("b");
+        set.add("c");
+        otherset.add("b");
+        otherset.add("c");
+        otherset.add("d");
+
+        assertEquals(set.size(), 3);
+        assertEquals(false, set.isEmpty());
+        assertEquals(true,set.contains("a"));
+        assertEquals(true,otherset.contains("b"));
+        
+        HashSet intersection = set.intersection(otherset);
+        HashSet Union = set.union(otherset);
+        HashSet Difference = set.difference(otherset);
+        assertEquals(true,intersection.contains("b"));
+        assertEquals(true,intersection.contains("c"));
+        assertEquals(true,Union.contains("a"));
+        assertEquals(true,Union.contains("b"));
+        assertEquals(true,Union.contains("c"));
+        assertEquals(true,Union.contains("d"));
+        assertEquals(true,Difference.contains("a"));
+
+        Union.remove("b");
+        assertEquals(false,Union.contains("b"));
+
+        Union.clear();
+        assertEquals(true,Union.isEmpty());
+
+    }
+
+
 }
